@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>AR</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="./js/aframe.min.js"></script>
+    <script src="./js/aframe-extras.loaders.min.js"></script>
+    <script src="./js/aframe-ar.js"></script>
+    <script src="./js/gesture-detector.js"></script>
+    <script src="./js/gesture-handler.js"></script>
+  </head>
+
+  <body>
+    <a-scene
+      arjs
+      embedded
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+      gesture-detector
+      id="scene"
+    >
+      <a-assets>
+        <!-- <a-asset-item
+          id="bowser"
+          src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"
+        >
+        </a-asset-item> -->
+        <a-asset-item id="bowser" src="./model/toon_cat_free.glb">
+        </a-asset-item>
+      </a-assets>
+
+      <a-marker
+        type="pattern"
+        url="./data/letterA.patt"
+        raycaster="objects: .clickable"
+        emitevents="true"
+        cursor="fuse: false; rayOrigin: mouse;"
+        id="markerA"
+      >
+        <a-entity
+          id="bowser-model"
+          gltf-model="#bowser"
+          position="0 0 0"
+          scale="0.005 0.005 0.005"
+          class="clickable"
+          gesture-handler
+        >
+        </a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
